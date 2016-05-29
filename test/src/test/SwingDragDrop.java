@@ -1,0 +1,62 @@
+package test;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class SwingDragDrop{
+  JTextField txtField;
+  JLabel lbl;
+  public static void main(String[] args){
+  SwingDragDrop sdd = new SwingDragDrop();
+  }
+
+  public SwingDragDrop(){
+  JFrame frame = new JFrame("Drag Drop Demo");
+  txtField = new JTextField(20);
+  lbl = new JLabel("This is the text for drag and drop.");
+  lbl.setTransferHandler(new TransferHandler("text"));
+  MouseListener ml = new MouseAdapter(){
+      public void mousePressed(MouseEvent e){
+      JComponent jc = (JComponent)e.getSource();
+      TransferHandler th = jc.getTransferHandler();
+      th.exportAsDrag(jc, e, TransferHandler.COPY);
+      }
+  };
+  lbl.addMouseListener(ml);
+      JPanel panel = new JPanel();
+      panel.add(txtField);
+      frame.add(lbl, BorderLayout.CENTER);
+      frame.add(panel, BorderLayout.NORTH);
+      frame.setSize(400, 400);
+      frame.setVisible(true);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setResizable(false);
+  }
+} 
+
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+ 
+      
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
+
